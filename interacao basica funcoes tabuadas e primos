@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <locale.h>
+#include <math.h>
+#include <string.h>
+
+void tabuada(int x)
+{			
+	for (int i=1; i<=10; i++)
+		printf("%i x %i = %i\n", x, i, x*i);
+}
+
+void primos(int y)
+{
+	int c=0, div, i, j;
+	
+	printf("\nEsses são os numeros primos de 1 até %i: \n\n", y);
+	
+	for (i=1; i<=y; i++)
+	{
+		for (j=2; j<i; j++)
+		{
+			div=i%j;
+			if (div==0)
+				c=c+1;
+		}
+		if (c==0)
+			printf("%i ", i);
+		c=0;				
+	}
+
+}
+
+main()
+{
+	
+	setlocale(LC_ALL, "Portuguese");
+	
+	int idade, i, tab;
+	char nome[15], cidade[15], resp[2];
+	
+	printf("Olá, por favor digite seu nome: ");
+	scanf("%s", &nome);
+	
+	printf("\nOlá, %s, digite sua idade: ", nome);
+	scanf ("%i", &idade);
+	
+	printf("\nDigite a cidade na qual mora: ");
+	scanf ("%s", &cidade);
+	
+	printf("\n\n---Dados---\n\nNome: %s\nIdade: %i\nCidade: %s", nome, idade, cidade);
+	
+	printf("\n\nDeseja visualizar a tabuada? Digite 'sim' ou 'nao'. \n");
+	scanf("%s", &resp);
+	
+	int comp = strcmp (resp, "sim");
+	if (comp==0)
+	{
+		do
+		{
+			printf("\nDigite o valor desejado: ");
+			scanf("%i", &tab);
+			printf("\n");
+			tabuada(tab);
+			
+			printf("\nDeseja vizualizar a tabuada de outro valor? Digite 'sim' ou 'nao'. ");
+			scanf("%s", &resp);
+			
+			int comp = strcmp (resp, "sim");
+			if (comp!=0)
+				break;
+		}
+		while (comp==0);
+	}
+	
+	printf("\nDeseja verificar uma tabela de números primos? Digite 'sim' ou 'nao'. ");
+	scanf("%s", resp);
+	
+	comp = strcmp (resp, "sim");
+	if (comp==0)
+	do
+	{
+		{
+			printf("\nDigite o valor máximo: ");
+			int primo;
+			scanf("%i", &primo);
+			primos(primo);
+			
+			printf("\n\nDeseja vizualizar números primos com outro valor? Digite 'sim' ou 'nao'. ");
+			scanf("%s", &resp);
+			
+			int comp = strcmp (resp, "sim");
+			if (comp!=0)
+				break;
+		}
+	}
+	while (comp==0);
+	
+	printf("\n");		
+	printf("\nFim do programa, obrigado!");
+			
+}
